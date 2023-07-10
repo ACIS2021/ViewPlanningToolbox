@@ -1,4 +1,5 @@
 from pathlib import Path
+import configparser
 
 import numpy as np
 import cv2
@@ -8,14 +9,23 @@ import blendtorch.btt as btt
 
 
 class TrajectoryVisualizer:
-    def __init__(self, rgb_images, poses, cam_pose, res, scene_path, blender_path, image_panel_dims, image_panel_scale,
-                 thickness=0.01, focal_length=50,
-                 rotation_mode='XYZ', collision_checking=False):
+    def __init__(self, rgb_images, poses, cam_pose, res, scene_path, image_panel_dims, image_panel_scale,
+                 thickness=0.01, focal_length=50, rotation_mode=None, collision_checking=False):
         self.scene_path = scene_path
-        self.blender_path = blender_path
-        if rotation_mode == 'QUATERNION':
+        config = configparser.ConfigParser()
+        config.read('../config.ini')
+        self.blender_path = config.getstr['Simulation Environment']['Blender_path']
+
+        if rotation_mode is None:
+            self.rototation_mode = config.getstr['Simulation Environment']['rotation_mode']
+
+        else:
+            self.rotation_mode = rotation_mode
+
+        if self.rotation_mode == 'QUATERNION':
             for i in range(len(poses)):
                 poses[i] = R.from_quat(poses[i]).as_euler('xyz')
+
         self.res_x, self.res_y = res
         self.focal_length = focal_length
         self.image_panel_dims = image_panel_dims

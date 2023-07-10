@@ -1,4 +1,5 @@
-# Copyright (c) 2018 Andy Zeng
+# Original copywrite notice: Copyright (c) 2018 Andy Zeng
+# Modifications bade by Matthew Tucsok Copyright (c) 2023 to integrate with current version of Python, PyCUDA, etc.
 
 import numpy as np
 

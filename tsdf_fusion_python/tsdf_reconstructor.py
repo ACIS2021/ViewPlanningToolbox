@@ -3,10 +3,10 @@
 This script acts as a wrapper for the TSDFReconstructor class. It is used to reconstruct a TSDF volume from a list of poses, rgb_images, and depth maps in the format
 of this toolbox
 """
+import multiprocessing as mp
+
 import numpy as np
 from scipy.spatial.transform import Rotation as R
-import multiprocessing as mp
-import cv2
 from skimage import measure
 
 

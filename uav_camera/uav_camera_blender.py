@@ -1,18 +1,32 @@
+import configparser
+
+
 import cv2
 import numpy as np
 from scipy.spatial.transform import Rotation as R
+
 
 from .PoseRenderer.render_queue_manager import RenderQueueManager
 
 
 class UAVCameraBlender:
-    def __init__(self, x_res, y_res, focal_length, depth_max_range, starting_shape_path, blender_path, rotation_mode='XYZ'):
-        self.x_res = x_res
-        self.y_res = y_res
-        self.focal_length = focal_length
-        self.shape_path = starting_shape_path
-        self.rotation_mode = rotation_mode
-        self.rqm = RenderQueueManager(x_res, y_res, focal_length, starting_shape_path, blender_path)
+    def __init__(self, starting_shape_path, x_res=None, y_res=None, focal_length=None, depth_max_range=None, rotation_mode=None):
+        if x_res is None:
+            config = configparser.ConfigParser()
+            config.read('../config.ini')
+            self.x_res = config.getint('Blender Camera', 'x_res')
+            self.y_res = config.getint('Blender Camera', 'y_res')
+            self.focal_length = config.getfloat('Blender Camera', 'focal_length')
+            self.depth_max_range = config.getfloat('Blender Camera', 'depth_max_range')
+            self.rotation_mode = config.getstr('Simulation Environment', 'rotation_mode')
+        else:
+            self.x_res = x_res
+            self.y_res = y_res
+            self.focal_length = focal_length
+            self.shape_path = starting_shape_path
+            self.rotation_mode = rotation_mode
+
+        self.rqm = RenderQueueManager(x_res, y_res, focal_length, starting_shape_path)
         self.depth_map = None
         self.rgb_image = None
         self.k = None

@@ -1,8 +1,13 @@
-def render_pose(x_render_res, y_render_res, focal_length, command_queue, data_queue, initial_shape_path, blender_path):
+def render_pose(x_render_res, y_render_res, focal_length, command_queue, data_queue, initial_shape_path):
     from pathlib import Path
+    import configparser
 
     import numpy as np
     import blendtorch.btt as btt
+
+    config = configparser.ConfigParser()
+    config.read('../../config.ini')
+    blender_path = config.get('Simulation Environment', 'blender_path')
 
     additional_args = [
         "--x_render_res", str(x_render_res),
