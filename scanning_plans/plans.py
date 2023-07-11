@@ -1,11 +1,10 @@
-from uav_camera.uav_camera_blender import UAVCameraBlender
 import math
 import numpy as np
 import cv2
 
 
 class ScanningPlan:
-    def __init__(self, uav_camera: UAVCameraBlender, visualize_scan):
+    def __init__(self, uav_camera, visualize_scan):
         self.poses = []
         self.rgb_images = []
         self.depth_maps = []
