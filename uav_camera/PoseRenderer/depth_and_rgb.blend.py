@@ -1,4 +1,5 @@
 from math import radians, atan2, pi, atan, sqrt
+from pathlib import Path
 
 import numpy as np
 import blendtorch.btb as btb
@@ -131,6 +132,13 @@ def configure_camera(bt_args, env_args):
     cam.rotation_euler = (0, 0, 0)
     k = get_calibration_matrix_k_from_blender(cam_data)
 
+    bpy.context.scene.use_nodes = True
+    tree = bpy.context.scene.node_tree
+
+    for node in tree.nodes:
+        if node.name == 'Out1':
+            exr_path = Path(__file__).parent / 'tmp' / 'objects_####_00.exr'
+            node.base_path = str(exr_path)
 
     render_cam = btb.Camera()
     render = btb.CompositeRenderer(

@@ -75,6 +75,14 @@ def configure_camera(bt_args, env_args):
     cam.location = (0, 0, 0)
     cam.rotation_euler = (0, 0, 0)
 
+    bpy.context.scene.use_nodes = True
+    tree = bpy.context.scene.node_tree
+
+    for node in tree.nodes:
+        if node.name == 'Out1':
+            exr_path = Path(__file__).parent / 'tmp' / 'objects_####_00.exr'
+            node.base_path = str(exr_path)
+
     render_cam = btb.Camera()
     render = btb.CompositeRenderer(
         [

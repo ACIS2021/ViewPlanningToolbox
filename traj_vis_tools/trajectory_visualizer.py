@@ -13,12 +13,12 @@ class TrajectoryVisualizer:
                  thickness=0.01, focal_length=50, rotation_mode=None, collision_checking=False):
         self.scene_path = scene_path
         config = configparser.ConfigParser()
-        config.read('../config.ini')
-        self.blender_path = config.getstr['Simulation Environment']['Blender_path']
+        config_path = Path(__file__).parent.parent / 'config.ini'
+        config.read(config_path)
+        self.blender_path = config.get('Simulation Environment', 'Blender_path')
 
         if rotation_mode is None:
-            self.rototation_mode = config.getstr['Simulation Environment']['rotation_mode']
-
+            self.rotation_mode = config.get('Simulation Environment', 'rotation_mode')
         else:
             self.rotation_mode = rotation_mode
 

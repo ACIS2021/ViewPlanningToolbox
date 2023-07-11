@@ -1,4 +1,5 @@
 import configparser
+from pathlib import Path
 
 import gym
 from gym import spaces
@@ -11,10 +12,11 @@ from uav_camera.uav_camera_blender import UAVCameraBlender
 class CustomEnv(gym.Env):
     def __init__(self):
         config = configparser.ConfigParser()
-        config.read('../../config.ini')
+        config_path = Path(__file__).parent.parent.parent / 'config.ini'
+        config.read(config_path)
         self.x_res = config.getint('Blender Camera', 'x_res')
         self.y_res = config.getint('Blender Camera', 'y_res')
-        self.rotation_mode = config.getstr('Simulation Environment', 'rotation_mode')
+        self.rotation_mode = config.get('Simulation Environment', 'rotation_mode')
         self.scene_path = 'PATH_TO_SCENE'
         self.uav_camera = UAVCameraBlender(self.scene_path)
         image_shape = (self.y_res, self.x_res, 3)  # Shape of RGB image

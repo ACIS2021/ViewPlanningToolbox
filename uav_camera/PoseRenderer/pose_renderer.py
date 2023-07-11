@@ -6,7 +6,8 @@ def render_pose(x_render_res, y_render_res, focal_length, command_queue, data_qu
     import blendtorch.btt as btt
 
     config = configparser.ConfigParser()
-    config.read('../../config.ini')
+    config_path = Path(__file__).parent.parent.parent / 'config.ini'
+    config.read(config_path)
     blender_path = config.get('Simulation Environment', 'blender_path')
 
     additional_args = [

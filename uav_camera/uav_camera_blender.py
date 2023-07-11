@@ -1,4 +1,5 @@
 import configparser
+from pathlib import Path
 
 
 import cv2
@@ -11,14 +12,15 @@ from .PoseRenderer.render_queue_manager import RenderQueueManager
 
 class UAVCameraBlender:
     def __init__(self, starting_shape_path, x_res=None, y_res=None, focal_length=None, depth_max_range=None, rotation_mode=None):
+        config = configparser.ConfigParser()
+        config_path = Path(__file__).parent.parent / 'config.ini'
+        config.read(config_path)
         if x_res is None:
-            config = configparser.ConfigParser()
-            config.read('../config.ini')
             self.x_res = config.getint('Blender Camera', 'x_res')
             self.y_res = config.getint('Blender Camera', 'y_res')
             self.focal_length = config.getfloat('Blender Camera', 'focal_length')
             self.depth_max_range = config.getfloat('Blender Camera', 'depth_max_range')
-            self.rotation_mode = config.getstr('Simulation Environment', 'rotation_mode')
+            self.rotation_mode = config.get('Simulation Environment', 'rotation_mode')
         else:
             self.x_res = x_res
             self.y_res = y_res
@@ -26,12 +28,12 @@ class UAVCameraBlender:
             self.shape_path = starting_shape_path
             self.rotation_mode = rotation_mode
 
-        self.rqm = RenderQueueManager(x_res, y_res, focal_length, starting_shape_path)
+        self.rqm = RenderQueueManager(self.x_res, self.y_res, self.focal_length, starting_shape_path)
         self.depth_map = None
         self.rgb_image = None
         self.k = None
         self.depth_max_range = depth_max_range  # Set this value to whatever you want
-        self.invalid_depth_value = 65504.
+        self.invalid_depth_value = config.getfloat('Blender Camera', 'invalid_depth_value')
 
         self.sensor_width = 36
         self.sensor_height = 24
