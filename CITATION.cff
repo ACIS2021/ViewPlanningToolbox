@@ -1,0 +1,17 @@
+cff-version: 1.0.1
+  message: "If you use this toolbox or any part of the code, please cite the original paper as below."
+authors:
+- family-names: "Hatami Gazani"
+  given-names: "Sara"
+- family-names: "Tucsok"
+  given-names: "Matthew"
+- family-names: "Mantegh"
+  given-names: "Iraj"
+- family-names: "Najjaran"
+  given-names: "Homayoun"
+
+title: "Bag of Views: An Appearance-based Approach to Next-Best-View Planning for 3D Reconstruction"
+version: 1.0.1
+doi: 10.48550/arXiv.2307.05832
+date-released: 2023-07-13
+url: "https://github.com/ACIS2021/ViewPlanningToolbox"
