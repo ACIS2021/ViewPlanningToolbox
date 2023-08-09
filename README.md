@@ -1,6 +1,17 @@
 # ViewPlanningToolbox
 A lightweight View Planning Toolbox (VPT) for simulated image acquisition, trajectory plans, trajectory visualization, and 3D reconstruction
 
+Citation
+--------------
+If you use the code or the toolbox for your work, please cite the following paper:
+```
+@article{gazani2023bag,
+  title={Bag of Views: An Appearance-based Approach to Next-Best-View Planning for 3D Reconstruction},
+  author={Gazani, Sara Hatami and Tucsok, Matthew and Mantegh, Iraj and Najjaran, Homayoun},
+  journal={arXiv preprint arXiv:2307.05832},
+  year={2023}
+}
+```
 
 Pre-requisites
 --------------
@@ -10,7 +21,7 @@ Pre-requisites
 4. VirtualEnv for the package management
 Installation Instructions
 -------------------------
-1. Clone this repository into your python project folder using terminal:
+1. Clone this repository into your Python project folder using the terminal:
 ```
 git clone https://github.com/matthew-tucsok/ViewPlanningToolbox.git <your_project_folder>
 ```
