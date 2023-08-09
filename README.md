@@ -25,7 +25,7 @@ Installation Instructions
 ```
 git clone https://github.com/matthew-tucsok/ViewPlanningToolbox.git <your_project_folder>
 ```
-2. Install the requirements.txt
+2. Install the requirements.txt.
 ```
 cd ViewPlanningToolbox
 pip install -r requirements.txt
@@ -41,4 +41,4 @@ alias blender='/<your_blender_path>/blender'
 
 4. Follow the installation instructions  steps 3-5 for [BlendTorch](https://github.com/cheind/pytorch-blender) replacing <DST> with "pytorch-blender".  
 
-5. Modify config.ini to point to your blender executable and change your camera settings
+5. Modify config.ini to point to your blender executable and change your camera settings.
