@@ -6,10 +6,14 @@ Citation
 If you use the code or the toolbox for your work, please cite the following paper:
 ```
 @article{gazani2023bag,
-  title={Bag of Views: An Appearance-based Approach to Next-Best-View Planning for 3D Reconstruction},
+  title={Bag of views: An appearance-based approach to next-best-view planning for 3d reconstruction},
   author={Gazani, Sara Hatami and Tucsok, Matthew and Mantegh, Iraj and Najjaran, Homayoun},
-  journal={arXiv preprint arXiv:2307.05832},
-  year={2023}
+  journal={IEEE Robotics and Automation Letters},
+  volume={9},
+  number={1},
+  pages={295--302},
+  year={2023},
+  publisher={IEEE}
 }
 ```
 
